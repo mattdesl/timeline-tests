@@ -161,7 +161,7 @@ function render(ctx, width, height, dt) {
 
 		widget[control.name] = val
 	})
-	ctx.font = "16px 'Open Sans Condensed', 'Helvetica', sans-serif"
+	ctx.font = "16px 'Helvetica', sans-serif"
 	ctx.fillText('click to animate', 10, 20)
 
 	path(ctx, widget)
@@ -173,7 +173,7 @@ function render(ctx, width, height, dt) {
 	str = str.substring(0, Math.min(str.length, ~~(chrs*str.length)))
 		
 	var size = widget.textSize[0]
-	ctx.font = size+"px 'Open Sans Condensed', 'Helvetica', sans-serif"
+	ctx.font = size+"px 'Helvetica', sans-serif"
 
 	ctx.fillStyle = 'rgba(0,0,0,0.25)'
 	ctx.globalAlpha = widget.textAlpha[0]
