@@ -6,7 +6,7 @@ The timelines can be bundled and easily re-used, swapped in and out, etc. Eventu
 
 # demos
 
-[Canvas Path Tweening](mattdesl.github.io/timeline-tests/demo1/index.html)  
-[CSS Property Tweening](mattdesl.github.io/timeline-tests/demo2/index.html)
+[Canvas Path Tweening](http://mattdesl.github.io/timeline-tests/demo1/index.html)  
+[CSS Property Tweening](http://mattdesl.github.io/timeline-tests/demo2/index.html)
 
 Source and details to come.
