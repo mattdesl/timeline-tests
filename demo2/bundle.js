@@ -311,7 +311,7 @@ module.exports = function(value1, value2, t, out) {
 		return lerpCSS(value1, value2, t)
 }
 },{"lerp":64}],6:[function(require,module,exports){
-//This is fairly application specific. Maybe 'position' isn't absolute? etc.
+//This is fairly application specific. Maybe 'position' isn't absolute, etc.
 
 //It would be more robust to use jQuery or TweenLite to handle things like prefixing,
 //browser bugs, etc.
@@ -324,6 +324,7 @@ function px(value) {
 	return typeof value === 'number' ? (value+'px') : value
 }
 
+//some special ones like colors or groups of properties (position, size)
 var css = {
 	position: function(value) {
 		return { left: px(value[0]), top: px(value[1]) }
