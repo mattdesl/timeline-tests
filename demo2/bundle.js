@@ -119,13 +119,18 @@ module.exports = [
 		{ time: 0, value: 13 },
 		{ time: 3, value: 33, ease: 'expoOut' },
 	] },
+	//there are other ways of vertical centering that don't involve more properties/keyframes
+	{ name: 'letter-spacing', keyframes: [
+		{ time: 0, value: 10 },
+		{ time: 2, value: 0, ease: 'quartOut' },
+	] },
 	{ name: 'rotation', keyframes: [
 		{ time: 0, value: [0,0,20] },
 		{ time: 3, value: [0,0,0], ease: 'elasticOut' },
 	] },
 	{ name: 'border-width', keyframes: [
-		{ time: 0, value: 15 },
-		{ time: 2, value: 2, ease: 'expoOut' },
+		{ time: 0, value: 10 },
+		{ time: 2, value: 2, ease: 'quartOut' },
 	] },
 	{ name: 'border-radius', keyframes: [
 		{ time: 0, value: 10 },
@@ -133,7 +138,7 @@ module.exports = [
 	] },
 	{ name: 'border-color', keyframes: [
 		{ time: 0, value: [100, 100, 100] },
-		{ time: 1, value: [170, 170, 170], ease: 'quadOut' },
+		{ time: 1, value: [200, 200, 200], ease: 'quadOut' },
 	] },
 ]
 },{}],3:[function(require,module,exports){
@@ -181,7 +186,7 @@ var loop = require('frame-loop')
 var domready = require('domready')
 var domify = require('domify')
 
-var css = ".box {\n\tbackground-color: white;\n\t\n    position: absolute;\n    top:0;\n    bottom: 0;\n    left: 0;\n    right: 0;\n\n    margin: auto;\n    text-align: center;\n\n\tborder: 0px solid black;\n\tdisplay: inline-block;\n\toverflow: hidden;\n\n\tcolor: white;\n}\n\n.info {\n\tposition: absolute;\n\ttop: 20px;\n\tleft: 20px;\n}\n\nbody {\n\tfont: 16px 'Helvetica', sans-serif;\n}"
+var css = ".box {\n\tbackground-color: white;\n\t\n    position: absolute;\n    top:0;\n    bottom: 0;\n    left: 0;\n    right: 0;\t\n    color: white;\n\n    margin: auto;\n    cursor: pointer;\n    text-align: center;\n\t\n\tborder: 0px solid black;\n\tdisplay: inline-block;\n\n\toverflow: hidden;\n}\n\n.info {\n\tposition: absolute;\n\ttop: 20px;\n\tleft: 20px;\n\tmargin: 0;\n}\np {\n\tmargin: 2px;\n}\n\nbody {\n\tfont: 16px 'Helvetica', sans-serif;\n}"
 require('insert-css')(css)
 
 var mapStyle = require('./map-css')
@@ -233,10 +238,13 @@ function start() {
 		//clear style
 		widget.element.style.cssText = ''
 	}
-	events.on(window, 'click', click)
-	events.on(window, 'touchstart', click)
+	events.on(widget.element, 'click', click)
+	events.on(widget.element, 'touchstart', click)
 
-	document.body.appendChild(domify('<div class="info">click to change timelines</div>'))
+
+	var txt = '<p>click button to change timelines</p>'
+			+ '<p>animation data <a href="https://github.com/mattdesl/timeline-tests/tree/master/demo2/data">here</a></p>'
+	document.body.appendChild(domify('<div class="info">'+txt+'</div>'))
 }
 
 domready(start)
@@ -339,22 +347,14 @@ var css = {
 			'box-shadow': shadow
 		}
 	},
-	'border-width': px,
 	'background-color': rgba,
 	'border-color': rgba,
-	'font-size': px,
-	'padding-top': px,
-	'padding-left': px,
-	'padding-right': px,
-	'padding-bottom': px,
-	'border-radius': px,
-	'line-height': px, 
 	color: rgba
 }
 
 function map(name, value) {
 	if (typeof css[name] !== 'function')
-		return value
+		return px(value)
 	return css[name](value)
 }
 
